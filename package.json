@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@alicloud/fun": "^3.6.23"
+  }
+}

@@ -57,8 +57,8 @@ computation and let front-end to deliver good user experience.
 
 > Now, we add a Cloud CDN server to help caching front-end resource for user with faster and better response.
 
-Speed is vague description for system design. It can be slow UI loading, Slow back-end responding. With this design, we are
-trying to improve faster UI loading. Sometimes, UI might contain massive amount of images and certain front-end
+Speed is vague description for system design. It can be slow UI loading, Slow back-end responding. With this design, we
+are trying to improve faster UI loading. Sometimes, UI might contain massive amount of images and certain front-end
 libraries. With Cloud CDN in place, it can deliver these "static" resources closer to user region with faster loading.
 User will experience a fast response of UI content.
 
@@ -74,8 +74,8 @@ Back to enhancement for backend, this time our database IO might be our bottlene
 fetching data that have been visited before. This behavior will overload our database IO capacity. With memory cache,
 back-end servers can firstly try fetching data from memory cache, if it got the data, we save the SQL fetch behavior. If
 it fails at memory cache, it can then go to Cloud SQL, at the same time, we store that data at memory cache to boost
-next time fetch. Obviously, memory cache is not unlimited and free. We might need to design our own maximum capacity and garbage
-collection mechanism.
+next time fetch. Obviously, memory cache is not unlimited and free. We might need to design our own maximum capacity and
+garbage collection mechanism.
 
 ### Solution #6
 
@@ -85,8 +85,8 @@ collection mechanism.
 
 Still database IO is our bottleneck. Previously, we focus more on the data "Read" behavior. We now introduce a way to
 increase "Write" behavior. This time, instead of performing our write behavior directly to DB, we send write task to
-message queue. We let the message queue to control the speed and frequency of inserting data to DB. It will increase 
-the speed of back-end response and treats data upload as asynchronized tasks.
+message queue. We let the message queue to control the speed and frequency of inserting data to DB. It will increase the
+speed of back-end response and treats data upload as asynchronized tasks.
 
 ### Solution #7
 
@@ -116,16 +116,16 @@ business is both front-end and backend computation intensive. This design might 
 
 > Finally, we offer more SQL database to enhance capacity of permanently storage.
 
-For this design, it is viable with slight enhancement, however NOT recommended. Because, data consistency is
-critical to any system. We never want to deal with messy database with data that conflicting to each other. This design,
-might include extra work like data sharding, separate storage and etc. It brings huge risk for back-end service handling
-and increases storage complexity.
+For this design, it is viable with slight enhancement, however NOT recommended. Because, data consistency is critical to
+any system. We never want to deal with messy database with data that conflicting to each other. This design, might
+include extra work like data sharding, separate storage and etc. It brings huge risk for back-end service handling and
+increases storage complexity.
 
 ### Extra
 
 Here. we have discussed mostly on regular business logic handling, data reading and writing. For configuration file,
-images, audio, video, machine learning file, search indexing, GPU parallel computation and more have not been covered on this
-document. Each area has it own unique design and skills to implement. If you feel interested, we can open another topic
-to discuss.
+images, audio, video, machine learning file, search indexing, GPU parallel computation and more have not been covered on
+this document. Each area has it own unique design and skills to implement. If you feel interested, we can open another
+topic to discuss.
 
 Thanks for your review! By Changyou Yu at 2021.08.15

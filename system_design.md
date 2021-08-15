@@ -88,7 +88,46 @@ increase "Write" behavior. This time instead of performing our write behavior di
 message queue, and let the message queue control the speed and frequency of inserting data to DB. This will increase the
 speed of back-end with fast response and treats data upload as asynchronized tasks.
 
-# Solution #6
+# Solution #7
 
 ![img.png](img_07.png)
 
+> Instead of using individual servers, this time we introduce Kubernetes to package our front-end and back-end
+> service together.
+
+With previous design, if traffic suddenly goes skyrocketed, we might need to manually increase servers for both
+front-end and back-end services. We might not have the man power to handle it out of sudden. In addition, if traffic
+plummets after a short period of time, the increased compute resources will keep generating high cost and low returns.
+Using technology like Kubernetes, it can intelligently expand compute resources (servers) horizontally by traffic. And
+the deployment of service to Kubernetes is simple and easy. It can simplify our build and deployment pipeline as well.
+
+# Solution #8
+
+![img.png](img_08.png)
+
+> This time, we can separate our front-end and back-end components with separate Kubernetes Clusters.
+
+This design might not be necessary but still has its benefits. It really depends on company business model. If our
+business is both front-end and backend compute intensive. This design might help with our performance.
+
+# Solution #9
+
+![img.png](img_09.png)
+
+> Finally, we offer mode SQL to enhance more capacity of permanently storage.
+
+For this design, it is viable and with slight enhancement, however NOT recommended. Because, data consistency is critical 
+to any system. We never want to deal with messy database with data that conflicting to each other. This design, might 
+include extra work like data sharding, separate storage and etc. It brings huge risk for back-end service handling and 
+data storing complexity.
+
+
+# Extra
+
+Here we have discussed mostly on regular business logic handling and data reading and writing. For configuration file, images,
+audio, video, machine learning file, search indexing, GPU parallel computation and more have not covered on this document.
+Each area, has it own unique design and skills to implement. If you feel interested, we can open another topic to discuss.
+
+
+## Thanks for your review!
+By Changyou Yu at 2021.08.15
